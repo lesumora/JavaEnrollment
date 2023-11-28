@@ -1,0 +1,126 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
+package enrollmentsystem;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+/**
+ * FXML Controller class
+ *
+ * @author hp
+ */
+public class ConfirmationController implements Initializable {
+
+    @FXML
+    private Text tSubject1, tSubject2, tSubject3, tSubject4, tSubject5, tSubject6, tSubject7, tSubject8,
+            tSubject9, tSubject10, tSubject11, tSubject12;
+
+    private Text[] subjectText;
+
+    HashMap<String, String> bsuCourse = new HashMap<>();
+    SubjectManager subjectManager = new SubjectManager();
+    
+    @FXML
+    private Text tAcadYear, tCampus, tAcademicProgram, tCurriculum, tYearLevel, tSection;
+    @FXML
+    private VBox paneSubject;
+
+    @FXML
+    private Button btnContinue;
+    @FXML
+    private Button btnBack;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        subjectText = new Text[]{tSubject1, tSubject2, tSubject3, tSubject4, tSubject5,
+            tSubject6, tSubject7, tSubject8, tSubject9, tSubject10, tSubject11, tSubject12};
+        bsuCourse.put("BSIT", "BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY");
+        //bsuCourse.put("BSA", "BACHELOR OF SCIENCE IN ACCOUNTANCY");
+
+        tCampus.setText(UserSession.getInstance().getUserCampus());
+
+        String userCourse = UserSession.getInstance().getCourse();
+        String value = bsuCourse.get(userCourse);
+        if (bsuCourse.containsKey(userCourse)) {
+            tAcademicProgram.setText(value);
+        } else {
+            System.out.println("Error");
+        }
+
+        tCurriculum.setText(UserSession.getInstance().getCurriculum());
+
+        tYearLevel.setText("" + UserSession.getInstance().getYearLevel());
+
+        tSection.setText(UserSession.getInstance().getSection());
+
+        HashMap<String, String> enrolledSubjects = UserSession.getInstance().getEnrolledSubjects();
+        int yearLevel = UserSession.getInstance().getYearLevel();
+        switch (yearLevel) {
+            case 1:
+                break;
+            case 2:
+                for (int i = 1; i <= 12; i++) {
+                    Text currentSubject = subjectText[i - 1];
+                    String subjectCode = "IT2" + (i < 10 ? "0" + i : i);
+
+                    if (enrolledSubjects.containsKey(subjectCode)) {
+                        currentSubject.setText("Enrolled Subject - " + subjectManager.getSubjectCode(subjectCode));
+                    } else {
+                        paneSubject.getChildren().remove(currentSubject);
+                    }
+                }
+                paneSubject.getChildren().remove(tSubject11);
+                paneSubject.getChildren().remove(tSubject12);
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+                System.out.println("Error");
+        }
+    }
+
+    @FXML
+    private void handleButtonAction(ActionEvent event) {
+        if (event.getSource() == btnContinue || event.getSource() == btnBack) {
+            String fxmlFile = (event.getSource() == btnContinue) ? "Dashboard.fxml" : "Advising.fxml";
+
+            try {
+                // Close the current confirmation window
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                currentStage.close();
+
+                // Open the specified window
+                Stage registerStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+                Scene scene = new Scene(root);
+                registerStage.setScene(scene);
+                registerStage.show();
+                UserSession.getInstance().setIsEnrolled(true);
+            } catch (IOException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+
+}
