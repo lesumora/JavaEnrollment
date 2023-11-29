@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,8 +40,14 @@ import javafx.stage.Stage;
 public class RegisterController implements Initializable {
 
     Connection connection = null;
+    Statement statement = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
+    
+    final String DB_URL = "jdbc:mysql://localhost:3306/enrollment?zeroDateTimeBehavior=CONVERT_TO_NULL";
+    final String DATABASE_NAME = "enrollment";
+    final String USERNAME = "root";
+    final String PASSWORD = "";
 
     @FXML
     private Label label;
@@ -62,14 +69,45 @@ public class RegisterController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cbYearLevel.setItems(FXCollections.observableArrayList("1", "2", "3", "4"));
         cbCourse.setItems(FXCollections.observableArrayList("BSIT"));
+        
+        try {
+            // Create database 'enrollment' if not created
+            connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE DATABASE IF NOT EXISTS enrollment");
+            
+            // Connect to the database 'enrollment'
+            connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+
+            // Create table 'user_info' if not created
+            String sql = "CREATE TABLE IF NOT EXISTS user_info ("
+                    + "id int(11) NOT NULL AUTO_INCREMENT,"
+                    + "last_name TEXT NOT NULL,"
+                    + "first_name TEXT NOT NULL,"
+                    + "username TEXT NOT NULL,"
+                    + "password TEXT NOT NULL,"
+                    + "year_level INT NOT NULL,"
+                    + "course TEXT NOT NULL,"
+                    + "bulsu_scholar TEXT NOT NULL,"
+                    + "PRIMARY KEY (id)"
+                    + ")";
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            showError("Error", "An error occurred bro", e);
+        } finally {
+            // Close resources properly in the finally block
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException ex) {
+                showError("Error", "An error occurred while closing resources", ex);
+            }
+        }
     }
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        final String DB_URL = "jdbc:mysql://localhost:3306/enrollment?zeroDateTimeBehavior=CONVERT_TO_NULL";
-        final String USERNAME = "root";
-        final String PASSWORD = "";
-
         try {
             connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
