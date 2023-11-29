@@ -33,11 +33,11 @@ public class ConfirmationController implements Initializable {
     private Text tSubject1, tSubject2, tSubject3, tSubject4, tSubject5, tSubject6, tSubject7, tSubject8,
             tSubject9, tSubject10, tSubject11, tSubject12;
 
-    private Text[] subjectText;
+    private Text[] subjectTexts;
 
     HashMap<String, String> bsuCourse = new HashMap<>();
     SubjectManager subjectManager = new SubjectManager();
-    
+
     @FXML
     private Text tAcadYear, tCampus, tAcademicProgram, tCurriculum, tYearLevel, tSection;
     @FXML
@@ -50,7 +50,7 @@ public class ConfirmationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        subjectText = new Text[]{tSubject1, tSubject2, tSubject3, tSubject4, tSubject5,
+        subjectTexts = new Text[]{tSubject1, tSubject2, tSubject3, tSubject4, tSubject5,
             tSubject6, tSubject7, tSubject8, tSubject9, tSubject10, tSubject11, tSubject12};
         bsuCourse.put("BSIT", "BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY");
         //bsuCourse.put("BSA", "BACHELOR OF SCIENCE IN ACCOUNTANCY");
@@ -73,13 +73,13 @@ public class ConfirmationController implements Initializable {
 
         HashMap<String, String> enrolledSubjects = UserSession.getInstance().getEnrolledSubjects();
         int yearLevel = UserSession.getInstance().getYearLevel();
+        int subjectCount = 0;
         switch (yearLevel) {
             case 1:
-                break;
-            case 2:
-                for (int i = 1; i <= 12; i++) {
-                    Text currentSubject = subjectText[i - 1];
-                    String subjectCode = "IT2" + (i < 10 ? "0" + i : i);
+                subjectCount = 6;
+                for (int i = 1; i <= subjectCount; i++) {
+                    Text currentSubject = subjectTexts[i - 1];
+                    String subjectCode = "IT10" + i;
 
                     if (enrolledSubjects.containsKey(subjectCode)) {
                         currentSubject.setText("Enrolled Subject - " + subjectManager.getSubjectCode(subjectCode));
@@ -87,15 +87,51 @@ public class ConfirmationController implements Initializable {
                         paneSubject.getChildren().remove(currentSubject);
                     }
                 }
-                paneSubject.getChildren().remove(tSubject11);
-                paneSubject.getChildren().remove(tSubject12);
+                break;
+            case 2:
+                subjectCount = 10;
+                for (int i = 1; i <= subjectCount; i++) {
+                    Text currentSubject = subjectTexts[i - 1];
+                    String subjectCode = "IT20" + i;
+
+                    if (enrolledSubjects.containsKey(subjectCode)) {
+                        currentSubject.setText("Enrolled Subject - " + subjectManager.getSubjectCode(subjectCode));
+                    } else {
+                        paneSubject.getChildren().remove(currentSubject);
+                    }
+                }
                 break;
             case 3:
+                subjectCount = 12;
+                for (int i = 1; i <= subjectCount; i++) {
+                    Text currentSubject = subjectTexts[i - 1];
+                    String subjectCode = "IT3" + (i < 10 ? "0" + i : i);
+
+                    if (enrolledSubjects.containsKey(subjectCode)) {
+                        currentSubject.setText("Enrolled Subject - " + subjectManager.getSubjectCode(subjectCode));
+                    } else {
+                        paneSubject.getChildren().remove(currentSubject);
+                    }
+                }
                 break;
             case 4:
+                subjectCount = 4;
+                for (int i = 1; i <= subjectCount; i++) {
+                    Text currentSubject = subjectTexts[i - 1];
+                    String subjectCode = "IT40" + i;
+
+                    if (enrolledSubjects.containsKey(subjectCode)) {
+                        currentSubject.setText("Enrolled Subject - " + subjectManager.getSubjectCode(subjectCode));
+                    } else {
+                        paneSubject.getChildren().remove(currentSubject);
+                    }
+                }
                 break;
             default:
                 System.out.println("Error");
+        }
+        for (int i = subjectCount; i < 12; i++) {
+            paneSubject.getChildren().remove(subjectTexts[i]);
         }
     }
 

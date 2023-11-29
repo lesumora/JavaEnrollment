@@ -64,7 +64,7 @@ public class DashboardController implements Initializable {
 
         subjectText = new Text[]{tSubject1, tSubject2, tSubject3, tSubject4, tSubject5,
             tSubject6, tSubject7, tSubject8, tSubject9, tSubject10, tSubject11, tSubject12};
-        
+
     }
 
     @FXML
@@ -91,26 +91,26 @@ public class DashboardController implements Initializable {
                 }
             }
         }
-        
-        if (event.getSource() == btnLogout) {
-           
-                try {
-                    //Set UserSession to null
-                    UserSession.getInstance().clearSession();
-                    // Close the current Dashboard window
-                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    currentStage.close();
 
-                    // Open the Login window
-                    Stage dashboardStage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-                    Scene scene = new Scene(root);
-                    dashboardStage.setScene(scene);
-                    dashboardStage.show();
-                } catch (Exception ex) {
-                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-                    System.out.println(ex);
-                }
+        if (event.getSource() == btnLogout) {
+
+            try {
+                //Set UserSession to null
+                UserSession.getInstance().clearSession();
+                // Close the current Dashboard window
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                currentStage.close();
+
+                // Open the Login window
+                Stage dashboardStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+                Scene scene = new Scene(root);
+                dashboardStage.setScene(scene);
+                dashboardStage.show();
+            } catch (Exception ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex);
+            }
         }
     }
 
@@ -119,13 +119,16 @@ public class DashboardController implements Initializable {
         lbPaneTitle.setText(cbStudent.getValue());
         VBox vbox = new VBox();
         vbox.setSpacing(13);
-        
+
         if (cbStudent.getValue().equals("Subject Enrolled")) {
             HashMap<String, String> enrolledSubjects = UserSession.getInstance().getEnrolledSubjects();
             SubjectManager subjectManager = new SubjectManager();
 
-            for (int i = 1; i <= 12; i++) {
-                String subjectCode = "IT2" + (i < 10 ? "0" + i : i);
+            int yearLevel = UserSession.getInstance().getYearLevel();
+            int subjectCount = getSubjectCountForYearLevel(yearLevel);
+
+            for (int i = 1; i <= subjectCount; i++) {
+                String subjectCode = getSubjectCodeForYearLevel(yearLevel, i);
 
                 if (enrolledSubjects.containsKey(subjectCode)) {
                     Text currentSubject = new Text("Enrolled Subject - \n" + subjectManager.getSubjectCode(subjectCode));
@@ -145,6 +148,26 @@ public class DashboardController implements Initializable {
 
         paneSubject.getChildren().setAll(vbox);
         showPane.setVisible(true);
+    }
+
+    private int getSubjectCountForYearLevel(int yearLevel) {
+        switch (yearLevel) {
+            case 1:
+                return 6;
+            case 2:
+                return 10;
+            case 3:
+                return 12;
+            case 4:
+                return 4;
+            default:
+                System.out.println("Invalid year level");
+                return 0;
+        }
+    }
+
+    private String getSubjectCodeForYearLevel(int yearLevel, int index) {
+        return "IT" + yearLevel + (index < 10 ? "0" + index : index);
     }
 
     private void showMessage(String title, String content) {

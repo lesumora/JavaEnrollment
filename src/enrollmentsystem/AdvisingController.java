@@ -33,23 +33,10 @@ import javafx.stage.Stage;
 public class AdvisingController implements Initializable {
 
     SubjectManager subjectManager = new SubjectManager();
-    SubjectManager.Subject year2_1 = subjectManager.getSubjectCode("IT201");
-    SubjectManager.Subject year2_2 = subjectManager.getSubjectCode("IT202");
-    SubjectManager.Subject year2_3 = subjectManager.getSubjectCode("IT203");
-    SubjectManager.Subject year2_4 = subjectManager.getSubjectCode("IT204");
-    SubjectManager.Subject year2_5 = subjectManager.getSubjectCode("IT205");
-    SubjectManager.Subject year2_6 = subjectManager.getSubjectCode("IT206");
-    SubjectManager.Subject year2_7 = subjectManager.getSubjectCode("IT207");
-    SubjectManager.Subject year2_8 = subjectManager.getSubjectCode("IT208");
-    SubjectManager.Subject year2_9 = subjectManager.getSubjectCode("IT209");
-    SubjectManager.Subject year2_10 = subjectManager.getSubjectCode("IT210");
-
-    SubjectManager.Subject year4_1 = subjectManager.getSubjectCode("IT401");
-    SubjectManager.Subject year4_2 = subjectManager.getSubjectCode("IT402");
-    SubjectManager.Subject year4_3 = subjectManager.getSubjectCode("IT403");
-    SubjectManager.Subject year4_4 = subjectManager.getSubjectCode("IT404");
-
     CheckBox[] checkBoxes;
+    Text[] subjectTexts;
+
+    private static final String[] SECTION_NAMES = {"SECTION - A", "SECTION - B", "SECTION - C", "SECTION - D"};
 
     @FXML
     private CheckBox cbSubject1, cbSubject2, cbSubject3, cbSubject4, cbSubject5, cbSubject6, cbSubject7, cbSubject8,
@@ -58,87 +45,49 @@ public class AdvisingController implements Initializable {
     private Text tSubject1, tSubject2, tSubject3, tSubject4, tSubject5, tSubject6, tSubject7, tSubject8,
             tSubject9, tSubject10, tSubject11, tSubject12;
     @FXML
-    private Button btnContinue;
+    private Button btnContinue, btnBack;
     @FXML
     private ComboBox<String> cbSection;
-    @FXML
-    private Button btnBack;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //String course = UserSession.getInstance().getCourse();
-        cbSection.setItems(FXCollections.observableArrayList(
-                "SECTION A", "SECTION B", "SECTION C", "SECTION D"));
+        cbSection.setItems(FXCollections.observableArrayList(SECTION_NAMES));
         int yearLevel = UserSession.getInstance().getYearLevel();
+
+        checkBoxes = new CheckBox[]{cbSubject1, cbSubject2, cbSubject3, cbSubject4, cbSubject5,
+            cbSubject6, cbSubject7, cbSubject8, cbSubject9, cbSubject10, cbSubject11, cbSubject12};
+
+        subjectTexts = new Text[]{tSubject1, tSubject2, tSubject3, tSubject4, tSubject5,
+            tSubject6, tSubject7, tSubject8, tSubject9, tSubject10, tSubject11, tSubject12};
+
+        int visibleSubjectCount = 0;
+
         switch (yearLevel) {
             case 1:
-                cbSubject7.setVisible(false);
-                cbSubject8.setVisible(false);
-                cbSubject9.setVisible(false);
-                cbSubject10.setVisible(false);
-                cbSubject11.setVisible(false);
-                cbSubject12.setVisible(false);
-                tSubject7.setVisible(false);
-                tSubject8.setVisible(false);
-                tSubject9.setVisible(false);
-                tSubject10.setVisible(false);
-                tSubject11.setVisible(false);
-                tSubject12.setVisible(false);
+                setSubjects(getYear1Subjects());
+                visibleSubjectCount = 6;
                 break;
             case 2:
-                tSubject1.setText(year2_1.toString());
-                tSubject2.setText(year2_2.toString());
-                tSubject3.setText(year2_3.toString());
-                tSubject4.setText(year2_4.toString());
-                tSubject5.setText(year2_5.toString());
-                tSubject6.setText(year2_6.toString());
-                tSubject7.setText(year2_7.toString());
-                tSubject8.setText(year2_8.toString());
-                tSubject9.setText(year2_9.toString());
-                tSubject10.setText(year2_10.toString());
-
-                cbSubject11.setVisible(false);
-                cbSubject12.setVisible(false);
-                tSubject11.setVisible(false);
-                tSubject12.setVisible(false);
+                setSubjects(getYear2Subjects());
+                visibleSubjectCount = 10;
                 break;
             case 3:
+                setSubjects(getYear3Subjects());
+                visibleSubjectCount = 12;
                 break;
             case 4:
-                tSubject1.setText(year4_1.toString());
-                tSubject2.setText(year4_2.toString());
-                tSubject3.setText(year4_3.toString());
-                tSubject4.setText(year4_4.toString());
-
-                if (cbSubject1.isSelected()) {
-                    UserSession.getInstance().enrollSubject(year4_1.toString());
-                } else if (cbSubject2.isSelected()) {
-                    UserSession.getInstance().enrollSubject(year4_2.toString());
-                } else if (cbSubject3.isSelected()) {
-                    UserSession.getInstance().enrollSubject(year4_3.toString());
-                } else if (cbSubject4.isSelected()) {
-                    UserSession.getInstance().enrollSubject(year4_4.toString());
-                }
-
-                cbSubject5.setVisible(false);
-                cbSubject6.setVisible(false);
-                cbSubject7.setVisible(false);
-                cbSubject8.setVisible(false);
-                cbSubject9.setVisible(false);
-                cbSubject10.setVisible(false);
-                cbSubject11.setVisible(false);
-                cbSubject12.setVisible(false);
-                tSubject5.setVisible(false);
-                tSubject6.setVisible(false);
-                tSubject7.setVisible(false);
-                tSubject8.setVisible(false);
-                tSubject9.setVisible(false);
-                tSubject10.setVisible(false);
-                tSubject11.setVisible(false);
-                tSubject12.setVisible(false);
+                setSubjects(getYear4Subjects());
+                visibleSubjectCount = 4;
                 break;
             default:
-                System.out.println("Error");
+                System.out.println("Invalid year level");
+                break;
+        }
+
+        // Hide unused checkboxes and text fields
+        for (int i = visibleSubjectCount; i < 12; i++) {
+            checkBoxes[i].setVisible(false);
+            subjectTexts[i].setVisible(false);
         }
     }
 
@@ -184,24 +133,35 @@ public class AdvisingController implements Initializable {
     @FXML
     private void checkBoxSave(ActionEvent event) {
         UserSession userSession = UserSession.getInstance();
-        checkBoxes = new CheckBox[]{
-            cbSubject1, cbSubject2, cbSubject3, cbSubject4, cbSubject5,
-            cbSubject6, cbSubject7, cbSubject8, cbSubject9, cbSubject10
-        };
+        int yearLevel = userSession.getYearLevel();
 
-        SubjectManager.Subject[] subjects = {
-            year2_1, year2_2, year2_3, year2_4, year2_5,
-            year2_6, year2_7, year2_8, year2_9, year2_10
-        };
+        SubjectManager.Subject[] subjects;
+
+        switch (yearLevel) {
+            case 1:
+                subjects = getYear1Subjects();
+                break;
+            case 2:
+                subjects = getYear2Subjects();
+                break;
+            case 3:
+                subjects = getYear3Subjects();
+                break;
+            case 4:
+                subjects = getYear4Subjects();
+                break;
+            default:
+                System.out.println("Invalid year level");
+                return;
+        }
 
         for (int i = 0; i < checkBoxes.length; i++) {
             CheckBox checkBox = checkBoxes[i];
-            SubjectManager.Subject subject = subjects[i];
 
             if (checkBox.isSelected()) {
-                userSession.enrollSubject(subject.getSubjectCode());
+                userSession.enrollSubject(subjects[i].getSubjectCode());
             } else {
-                userSession.unenrollSubject(subject.getSubjectCode());
+                userSession.unenrollSubject(subjects[i].getSubjectCode());
             }
         }
     }
@@ -210,6 +170,48 @@ public class AdvisingController implements Initializable {
     private void sectionSelect(ActionEvent event) {
         String selectedSection = cbSection.getValue();
         UserSession.getInstance().setSection(selectedSection);
+    }
+
+    private void setSubjects(SubjectManager.Subject[] subjects) {
+        for (int i = 0; i < subjects.length; i++) {
+            subjectTexts[i].setText(subjects[i].toString());
+        }
+    }
+
+    private SubjectManager.Subject[] getYear1Subjects() {
+        return new SubjectManager.Subject[]{
+            subjectManager.getSubjectCode("IT101"), subjectManager.getSubjectCode("IT102"),
+            subjectManager.getSubjectCode("IT103"), subjectManager.getSubjectCode("IT104"),
+            subjectManager.getSubjectCode("IT105"), subjectManager.getSubjectCode("IT106")
+        };
+    }
+
+    private SubjectManager.Subject[] getYear2Subjects() {
+        return new SubjectManager.Subject[]{
+            subjectManager.getSubjectCode("IT201"), subjectManager.getSubjectCode("IT202"),
+            subjectManager.getSubjectCode("IT203"), subjectManager.getSubjectCode("IT204"),
+            subjectManager.getSubjectCode("IT205"), subjectManager.getSubjectCode("IT206"),
+            subjectManager.getSubjectCode("IT207"), subjectManager.getSubjectCode("IT208"),
+            subjectManager.getSubjectCode("IT209"), subjectManager.getSubjectCode("IT210")
+        };
+    }
+
+    private SubjectManager.Subject[] getYear3Subjects() {
+        return new SubjectManager.Subject[]{
+            subjectManager.getSubjectCode("IT301"), subjectManager.getSubjectCode("IT302"),
+            subjectManager.getSubjectCode("IT303"), subjectManager.getSubjectCode("IT304"),
+            subjectManager.getSubjectCode("IT305"), subjectManager.getSubjectCode("IT306"),
+            subjectManager.getSubjectCode("IT307"), subjectManager.getSubjectCode("IT308"),
+            subjectManager.getSubjectCode("IT309"), subjectManager.getSubjectCode("IT310"),
+            subjectManager.getSubjectCode("IT311"), subjectManager.getSubjectCode("IT312")
+        };
+    }
+
+    private SubjectManager.Subject[] getYear4Subjects() {
+        return new SubjectManager.Subject[]{
+            subjectManager.getSubjectCode("IT401"), subjectManager.getSubjectCode("IT402"),
+            subjectManager.getSubjectCode("IT403"), subjectManager.getSubjectCode("IT404")
+        };
     }
 
     private void showMessage(String title, String content) {

@@ -136,7 +136,7 @@ public class LoginController implements Initializable {
                             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                             System.out.println(ex);
                         }
-                        showMessage("Login successful", "");
+                        showMessage("Correct Credentials", "Login Successful");
                         return;
                     }
                 } catch (SQLException e) {
