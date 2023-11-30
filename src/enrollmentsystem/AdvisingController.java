@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,8 +23,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -35,6 +38,7 @@ public class AdvisingController implements Initializable {
     SubjectManager subjectManager = new SubjectManager();
     CheckBox[] checkBoxes;
     Text[] subjectTexts;
+    double x = 0, y = 0;
 
     private static final String[] SECTION_NAMES = {"SECTION - A", "SECTION - B", "SECTION - C", "SECTION - D"};
 
@@ -48,6 +52,10 @@ public class AdvisingController implements Initializable {
     private Button btnContinue, btnBack;
     @FXML
     private ComboBox<String> cbSection;
+    @FXML
+    private Button btnExit;
+    @FXML
+    private Pane advisingPane;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -104,6 +112,16 @@ public class AdvisingController implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("Enrollment.fxml"));
                 Scene scene = new Scene(root);
                 previousStage.setScene(scene);
+                previousStage.initStyle(StageStyle.UNDECORATED);
+
+                root.setOnMousePressed(evt -> {
+                    x = evt.getSceneX();
+                    y = evt.getSceneY();
+                });
+                root.setOnMouseDragged(evt -> {
+                    previousStage.setX(evt.getScreenX() - x);
+                    previousStage.setY(evt.getScreenY() - y);
+                });
                 previousStage.show();
             } catch (IOException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,17 +134,31 @@ public class AdvisingController implements Initializable {
                 currentStage.close();
 
                 // Open the specified window
-                Stage registerStage = new Stage();
+                Stage confirmationStage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("Confirmation.fxml"));
                 Scene scene = new Scene(root);
-                registerStage.setScene(scene);
-                registerStage.show();
+                confirmationStage.setScene(scene);
+                confirmationStage.initStyle(StageStyle.UNDECORATED);
+
+                root.setOnMousePressed(evt -> {
+                    x = evt.getSceneX();
+                    y = evt.getSceneY();
+                });
+                root.setOnMouseDragged(evt -> {
+                    confirmationStage.setX(evt.getScreenX() - x);
+                    confirmationStage.setY(evt.getScreenY() - y);
+                });
+                confirmationStage.show();
             } catch (IOException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             // User clicked on btnContinue, but ComboBox is null
             showMessage("OOPS!", "Please choose a section.");
+        }
+        
+        if (event.getSource() == btnExit){
+            Platform.exit();
         }
     }
 
