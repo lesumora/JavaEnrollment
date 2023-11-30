@@ -1,0 +1,49 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Nov 30, 2023, 2:26:33 PM
+    Author     : hp
+*/
+
+
+.root{
+    -fx-background-color: #383838;
+}
+
+.label{
+    -fx-font: "Lucida Console";
+    -fx-text-fill: #E8E8E8;
+}
+
+.button{
+    -fx-background-radius: 4;
+    -fx-text-fill: #FFFFFF;
+    
+}
+
+#btnRegister, #btnBack{
+    -fx-background-color: #AB4642;
+}
+
+#btnRegister:hover, #btnBack:hover{
+    -fx-background-color: #ab302b;
+}
+
+#btnLogin{
+        -fx-background-color: #9bb557;
+}
+
+#btnLogin:hover{
+    -fx-background-color: #90b336;
+}
+
+#btnExit {
+    -fx-background-color: #d90800;
+}
+
+#btnExit:hover{
+    -fx-background-color: #d90800;
+}
+
