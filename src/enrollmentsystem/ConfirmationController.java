@@ -98,7 +98,7 @@ public class ConfirmationController implements Initializable {
                 subjectCount = 10;
                 for (int i = 1; i <= subjectCount; i++) {
                     Text currentSubject = subjectTexts[i - 1];
-                    String subjectCode = "IT20" + i;
+                    String subjectCode = "IT2" + (i < 10 ? "0" + i : i);
 
                     if (enrolledSubjects.containsKey(subjectCode)) {
                         currentSubject.setText("" + subjectManager.getSubjectCode(subjectCode));

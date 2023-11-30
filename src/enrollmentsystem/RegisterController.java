@@ -165,8 +165,9 @@ public class RegisterController implements Initializable {
             }
             
             // Check username and password length
-            if (username.length() != 6 || password.length() != 6) {
-                showMessage("Invalid Input", "Username and password must be 6 characters long.");
+            if (username.length() > 6 || password.length() > 6 || confirmPassword.length() > 6) {
+                showMessage("Character limit reached!", 
+                        "Username and password limit is 6 characters only.");
                 return;
             }
 

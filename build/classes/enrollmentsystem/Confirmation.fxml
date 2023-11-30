@@ -14,10 +14,10 @@
         <URL value="@/enrollmentsystem/css/styles.css" />
     </stylesheets>
     <children>
-        <Button fx:id="btnContinue" layoutX="522.0" layoutY="547.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="78.0" text="Continue" />
-        <Button fx:id="btnBack" layoutX="425.0" layoutY="547.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="78.0" text="Back" />
+        <Button fx:id="btnContinue" layoutX="546.0" layoutY="547.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="78.0" text="Continue" />
+        <Button fx:id="btnBack" layoutX="445.0" layoutY="547.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="78.0" text="Back" />
       <Button fx:id="btnExit" layoutX="612.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonAction" text="X" />
-      <Pane fx:id="confirmationPane" layoutX="21.0" layoutY="48.0" prefHeight="490.0" prefWidth="579.0">
+      <Pane fx:id="confirmationPane" layoutX="15.0" layoutY="48.0" prefHeight="490.0" prefWidth="620.0">
          <children>
               <Pane layoutX="13.0" layoutY="14.0" prefHeight="169.0" prefWidth="544.0">
                   <children>
@@ -33,7 +33,7 @@
                       <Text layoutX="52.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year Level:" textAlignment="RIGHT" wrappingWidth="119.13671815395355" />
                       <Text layoutX="52.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Section:" textAlignment="RIGHT" wrappingWidth="119.13671815395355" />
                       <Text fx:id="tAcadYear" layoutX="220.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2024 Summer" wrappingWidth="125.13671803474426" />
-                      <Text fx:id="tCampus" layoutX="220.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="119.13671815395355" />
+                      <Text fx:id="tCampus" layoutX="220.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="175.13671815395355" />
                       <Text fx:id="tAcademicProgram" layoutX="220.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="318.13671815395355" />
                       <Text fx:id="tCurriculum" layoutX="220.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="119.13671815395355" />
                       <Text fx:id="tYearLevel" layoutX="220.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="119.13671815395355" />

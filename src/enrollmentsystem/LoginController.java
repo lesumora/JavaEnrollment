@@ -135,7 +135,7 @@ public class LoginController implements Initializable {
             String password = pfPassword.getText();
 
             // Check username and password length
-            if (username.length() > 6) {
+            if (username.length() > 6 || password.length() > 6) {
                 showMessage("Character limit reached!", 
                         "Username and password limit is 6 characters only.");
                 return;
