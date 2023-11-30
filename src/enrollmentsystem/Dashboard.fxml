@@ -26,7 +26,7 @@
                 <Button fx:id="btnLogout" layoutX="35.0" layoutY="424.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="136.0" text="Logout" />
             </children>
         </Pane>
-        <Pane fx:id="showPane" layoutX="204.0" layoutY="99.0" prefHeight="358.0" prefWidth="446.0">
+        <Pane fx:id="showPane" layoutX="204.0" layoutY="99.0" prefHeight="358.0" prefWidth="446.0" visible="false">
             <children>
                 <Label fx:id="lbPaneTitle" layoutX="14.0" text="Registered Subject/s">
                <font>

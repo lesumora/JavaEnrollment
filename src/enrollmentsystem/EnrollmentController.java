@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -41,6 +43,7 @@ public class EnrollmentController implements Initializable {
     ResultSet resultSet = null;
     
     HashMap<String, String> bsuCourse = new HashMap<>();
+    double x = 0, y = 0;
 
     @FXML
     private ComboBox<String> cbCampus;
@@ -56,6 +59,8 @@ public class EnrollmentController implements Initializable {
     private Button btnContinue;
     @FXML
     private Button btnBack;
+    @FXML
+    private Button btnExit;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -123,6 +128,16 @@ public class EnrollmentController implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
                 Scene scene = new Scene(root);
                 previousStage.setScene(scene);
+                previousStage.initStyle(StageStyle.UNDECORATED);
+
+                root.setOnMousePressed(evt -> {
+                    x = evt.getSceneX();
+                    y = evt.getSceneY();
+                });
+                root.setOnMouseDragged(evt -> {
+                    previousStage.setX(evt.getScreenX() - x);
+                    previousStage.setY(evt.getScreenY() - y);
+                });
                 previousStage.show();
             } catch (IOException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
@@ -135,17 +150,31 @@ public class EnrollmentController implements Initializable {
                 currentStage.close();
 
                 // Open the specified window
-                Stage registerStage = new Stage();
+                Stage advisingStage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("Advising.fxml"));
                 Scene scene = new Scene(root);
-                registerStage.setScene(scene);
-                registerStage.show();
+                advisingStage.setScene(scene);
+                advisingStage.initStyle(StageStyle.UNDECORATED);
+
+                root.setOnMousePressed(evt -> {
+                    x = evt.getSceneX();
+                    y = evt.getSceneY();
+                });
+                root.setOnMouseDragged(evt -> {
+                    advisingStage.setX(evt.getScreenX() - x);
+                    advisingStage.setY(evt.getScreenY() - y);
+                });
+                advisingStage.show();
             } catch (IOException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             // User clicked on btnContinue, but ComboBox is null
             showMessage("OOPS!", "Please choose a campus.");
+        }
+        
+        if (event.getSource() == btnExit){
+            Platform.exit();
         }
     }
 
