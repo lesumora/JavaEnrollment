@@ -27,6 +27,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: #AB4642;
 }
 
+#btnRegister:pressed, #btnBack:pressed, #btnLogout:pressed{
+    -fx-background-color: #AB4642;
+}
+
 #btnRegister:hover, #btnBack:hover, #btnLogout:hover{
     -fx-background-color: #ab302b;
 }
@@ -35,11 +39,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: #9bb557;
 }
 
+#btnLogin:pressed, #btnContinue:pressed{
+    -fx-background-color: #9bb557;
+}
+
 #btnLogin:hover, #btnContinue:hover{
     -fx-background-color: #90b336;
 }
 
-#btnExit {
+#btnExit, #btnExit:pressed {
     -fx-background-color: #D90800;
 }
 
@@ -47,7 +55,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: #990702;
 }
 
-#cbStudent, #btnEnrollment {
+#cbStudent, #btnEnrollment, #cbStudent:pressed, #btnEnrollment:pressed {
     -fx-background-color: #7CAFC2;
 }
 
