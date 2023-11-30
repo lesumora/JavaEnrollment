@@ -12,22 +12,22 @@
         <URL value="@/enrollmentsystem/css/styles.css" />
     </stylesheets>
     <children>
-        <Label layoutX="104.0" layoutY="146.0" text="Academic Year &amp; Term *" />
-        <TextField disable="true" layoutX="254.0" layoutY="142.0" prefHeight="25.0" prefWidth="271.0" text="2024 Summer" />
-        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="104.0" layoutY="188.0" prefHeight="17.0" prefWidth="130.0" text="Campus *" />
-        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="104.0" layoutY="231.0" prefHeight="17.0" prefWidth="130.0" text="Academic Program *" />
-        <TextField fx:id="tfProgram" disable="true" layoutX="254.0" layoutY="227.0" prefHeight="25.0" prefWidth="271.0" />
-        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="104.0" layoutY="273.0" prefHeight="17.0" prefWidth="130.0" text="Curriculum *" />
-        <TextField fx:id="tfCurriculum" disable="true" layoutX="254.0" layoutY="269.0" prefHeight="25.0" prefWidth="271.0" />
-        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="104.0" layoutY="316.0" prefHeight="17.0" prefWidth="130.0" text="Incoming Level *" />
-        <TextField fx:id="tfIncomingLevel" disable="true" layoutX="254.0" layoutY="312.0" prefHeight="25.0" prefWidth="271.0" />
-        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="104.0" layoutY="357.0" prefHeight="17.0" prefWidth="130.0" text="Status *" />
-        <TextField disable="true" layoutX="254.0" layoutY="353.0" prefHeight="25.0" prefWidth="271.0" text="Not yet registered" />
-        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="104.0" layoutY="399.0" prefHeight="17.0" prefWidth="130.0" text="Outstanding Balance *" />
-        <TextField fx:id="tfBalance" disable="true" layoutX="254.0" layoutY="396.0" prefHeight="25.0" prefWidth="271.0" />
-        <Button fx:id="btnContinue" layoutX="447.0" layoutY="445.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="78.0" text="Continue" />
-        <ComboBox fx:id="cbCampus" layoutX="254.0" layoutY="184.0" onAction="#comboBoxClicked" prefHeight="25.0" prefWidth="271.0" />
-        <Button fx:id="btnBack" layoutX="349.0" layoutY="445.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="78.0" text="Back" />
+        <Label layoutX="85.0" layoutY="146.0" text="Academic Year &amp; Term *" />
+        <TextField disable="true" layoutX="235.0" layoutY="142.0" prefHeight="25.0" prefWidth="321.0" text="2024 Summer" />
+        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="85.0" layoutY="188.0" prefHeight="17.0" prefWidth="130.0" text="Campus *" />
+        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="85.0" layoutY="231.0" prefHeight="17.0" prefWidth="130.0" text="Academic Program *" />
+        <TextField fx:id="tfProgram" disable="true" layoutX="235.0" layoutY="227.0" prefHeight="25.0" prefWidth="321.0" />
+        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="85.0" layoutY="273.0" prefHeight="17.0" prefWidth="130.0" text="Curriculum *" />
+        <TextField fx:id="tfCurriculum" disable="true" layoutX="235.0" layoutY="269.0" prefHeight="25.0" prefWidth="321.0" />
+        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="85.0" layoutY="316.0" prefHeight="17.0" prefWidth="130.0" text="Incoming Level *" />
+        <TextField fx:id="tfIncomingLevel" disable="true" layoutX="235.0" layoutY="312.0" prefHeight="25.0" prefWidth="321.0" />
+        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="85.0" layoutY="357.0" prefHeight="17.0" prefWidth="130.0" text="Status *" />
+        <TextField disable="true" layoutX="235.0" layoutY="353.0" prefHeight="25.0" prefWidth="321.0" text="Not yet registered" />
+        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="85.0" layoutY="399.0" prefHeight="17.0" prefWidth="130.0" text="Outstanding Balance *" />
+        <TextField fx:id="tfBalance" disable="true" layoutX="235.0" layoutY="396.0" prefHeight="25.0" prefWidth="321.0" />
+        <Button fx:id="btnContinue" layoutX="477.0" layoutY="445.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="78.0" text="Continue" />
+        <ComboBox fx:id="cbCampus" layoutX="235.0" layoutY="184.0" onAction="#comboBoxClicked" prefHeight="25.0" prefWidth="321.0" />
+        <Button fx:id="btnBack" layoutX="379.0" layoutY="445.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="78.0" text="Back" />
       <Button fx:id="btnExit" layoutX="612.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonAction" text="X" />
     </children>
 </AnchorPane>
