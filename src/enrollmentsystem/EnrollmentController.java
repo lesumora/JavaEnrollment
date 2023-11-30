@@ -75,7 +75,8 @@ public class EnrollmentController implements Initializable {
         }
 
         cbCampus.setItems(FXCollections.observableArrayList(
-                "BulSU - Main", "Sarmiento", "San Rafael", "Bustos"));
+                "BulSU - Main (Malolos)", "Bustos", "Sarmiento", "San Rafael", 
+                "Meneses", "Hagonoy"));
 
         bsuCourse.put("BSIT", "BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY");
         bsuCourse.put("BSA", "BACHELOR OF SCIENCE IN ACCOUNTANCY");
