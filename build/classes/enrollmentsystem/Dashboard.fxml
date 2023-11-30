@@ -1,42 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="enrollmentsystem.DashboardController">
-   <children>
-      <Pane prefHeight="400.0" prefWidth="166.0">
-         <children>
-            <ComboBox fx:id="cbStudent" layoutX="15.0" layoutY="126.0" onAction="#comboBoxSelected" prefHeight="25.0" prefWidth="136.0" promptText="Student" />
-            <Button fx:id="btnEnrollment" layoutX="15.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="136.0" text="Enrollment" />
-            <Label fx:id="lbWelcome" layoutX="55.0" layoutY="46.0" text="Label" textAlignment="CENTER" />
-            <Button fx:id="btnLogout" layoutX="15.0" layoutY="292.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="136.0" text="Logout" />
-         </children>
-      </Pane>
-      <Pane fx:id="showPane" layoutX="166.0" layoutY="10.0" prefHeight="381.0" prefWidth="382.0" visible="false">
-         <children>
-            <Label fx:id="lbPaneTitle" layoutX="14.0" layoutY="6.0" text="Registered Subject/s" />
-            <VBox fx:id="paneSubject" alignment="TOP_CENTER" layoutX="18.0" layoutY="35.0" prefHeight="216.0" prefWidth="347.0">
-               <children>
-                  <Text fx:id="tSubject1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text fx:id="tSubject2" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text fx:id="tSubject3" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text fx:id="tSubject4" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text fx:id="tSubject5" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text fx:id="tSubject6" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text fx:id="tSubject7" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text fx:id="tSubject8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text fx:id="tSubject9" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text fx:id="tSubject10" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text fx:id="tSubject11" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text fx:id="tSubject12" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-               </children>
-            </VBox>
-         </children></Pane>
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="enrollmentsystem.DashboardController">
+    <stylesheets>
+        <URL value="@/enrollmentsystem/css/styles.css" />
+    </stylesheets>
+    <children>
+        <Pane fx:id="dashPane" layoutX="-1.0" prefHeight="600.0" prefWidth="205.0">
+            <children>
+                <ComboBox fx:id="cbStudent" layoutX="35.0" layoutY="202.0" onAction="#comboBoxSelected" prefHeight="32.0" prefWidth="136.0" promptText="Student" />
+                <Button fx:id="btnEnrollment" layoutX="35.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="136.0" text="Enrollment" />
+                <Label fx:id="lbWelcome" layoutX="69.0" layoutY="98.0" text="Label" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font></Label>
+                <Button fx:id="btnLogout" layoutX="35.0" layoutY="424.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="136.0" text="Logout" />
+            </children>
+        </Pane>
+        <Pane fx:id="showPane" layoutX="204.0" layoutY="99.0" prefHeight="358.0" prefWidth="446.0">
+            <children>
+                <Label fx:id="lbPaneTitle" layoutX="14.0" text="Registered Subject/s">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Label>
+                <VBox fx:id="paneSubject" alignment="TOP_CENTER" layoutX="23.0" layoutY="26.0" prefHeight="321.0" prefWidth="412.0">
+                    <children>
+                        <Text fx:id="tSubject1" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #D8D8D8;" text="Text" />
+                        <Text fx:id="tSubject2" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #D8D8D8;" text="Text" />
+                        <Text fx:id="tSubject3" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #D8D8D8;" text="Text" />
+                        <Text fx:id="tSubject4" fill="#d8d8d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <Text fx:id="tSubject5" fill="#d8d8d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <Text fx:id="tSubject6" fill="#d8d8d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <Text fx:id="tSubject7" fill="#d8d8d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <Text fx:id="tSubject8" fill="#d8d8d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <Text fx:id="tSubject9" fill="#d8d8d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <Text fx:id="tSubject10" fill="#d8d8d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <Text fx:id="tSubject11" fill="#d8d8d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <Text fx:id="tSubject12" fill="#d8d8d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <Button fx:id="btnExit" layoutX="612.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonAction" text="X" />
+    </children>
 </AnchorPane>

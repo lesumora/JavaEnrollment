@@ -9,7 +9,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 
 .root{
-    -fx-background-color: #383838;
+    -fx-background-color: #282828;
 }
 
 .label{
@@ -20,19 +20,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .button{
     -fx-background-radius: 4;
     -fx-text-fill: #FFFFFF;
-    
+
 }
 
-#btnRegister, #btnBack{
+#btnRegister, #btnBack, #btnLogout{
     -fx-background-color: #AB4642;
 }
 
-#btnRegister:hover, #btnBack:hover{
+#btnRegister:hover, #btnBack:hover, #btnLogout:hover{
     -fx-background-color: #ab302b;
 }
 
 #btnLogin{
-        -fx-background-color: #9bb557;
+    -fx-background-color: #9bb557;
 }
 
 #btnLogin:hover{
@@ -40,10 +40,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 #btnExit {
-    -fx-background-color: #d90800;
+    -fx-background-color: #D90800;
 }
 
 #btnExit:hover{
-    -fx-background-color: #d90800;
+    -fx-background-color: #990702;
 }
 
+#cbStudent, #btnEnrollment {
+    -fx-background-color: #7CAFC2;
+}
+
+#cbStudent:hover, #btnEnrollment:hover {
+    -fx-background-color: #8cc6db;
+}
+
+#dashPane{
+    -fx-background-color: #383838;
+}
+
+#showPane{
+    -fx-background-color: #585858;
+}

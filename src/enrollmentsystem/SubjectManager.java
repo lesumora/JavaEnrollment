@@ -40,7 +40,7 @@ public class SubjectManager {
                 new Subject("IT208", "Platform Technologies"),
                 new Subject("IT209", "Interactive Systems and Technologies"),
                 new Subject("IT210", "Networking 2"),
-                new Subject("IT301", "Application Development and Emerging Technologies"),
+                new Subject("IT301", "Application Development and Technologies"),
                 new Subject("IT302", "Social and Professional Issues"),
                 new Subject("IT303", "System Analysis and Design"),
                 new Subject("IT304", "Web Systems and Technologies 1"),

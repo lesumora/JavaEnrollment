@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +26,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -53,6 +55,12 @@ public class DashboardController implements Initializable {
     private Label lbPaneTitle;
     @FXML
     private Button btnLogout;
+
+    double x = 0, y = 0;
+    @FXML
+    private Button btnExit;
+    @FXML
+    private Pane dashPane;
 
     /**
      * Initializes the controller class.
@@ -84,6 +92,16 @@ public class DashboardController implements Initializable {
                     Parent root = FXMLLoader.load(getClass().getResource("Enrollment.fxml"));
                     Scene scene = new Scene(root);
                     dashboardStage.setScene(scene);
+                    dashboardStage.initStyle(StageStyle.UNDECORATED);
+
+                    root.setOnMousePressed(evt -> {
+                        x = evt.getSceneX();
+                        y = evt.getSceneY();
+                    });
+                    root.setOnMouseDragged(evt -> {
+                        dashboardStage.setX(evt.getScreenX() - x);
+                        dashboardStage.setY(evt.getScreenY() - y);
+                    });
                     dashboardStage.show();
                 } catch (Exception ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
@@ -106,11 +124,25 @@ public class DashboardController implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
                 Scene scene = new Scene(root);
                 dashboardStage.setScene(scene);
+                dashboardStage.initStyle(StageStyle.UNDECORATED);
+
+                root.setOnMousePressed(evt -> {
+                    x = evt.getSceneX();
+                    y = evt.getSceneY();
+                });
+                root.setOnMouseDragged(evt -> {
+                    dashboardStage.setX(evt.getScreenX() - x);
+                    dashboardStage.setY(evt.getScreenY() - y);
+                });
                 dashboardStage.show();
             } catch (Exception ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println(ex);
             }
+        }
+
+        if (event.getSource() == btnExit) {
+            Platform.exit();
         }
     }
 
@@ -118,7 +150,7 @@ public class DashboardController implements Initializable {
     private void comboBoxSelected(ActionEvent event) {
         lbPaneTitle.setText(cbStudent.getValue());
         VBox vbox = new VBox();
-        vbox.setSpacing(13);
+        vbox.setSpacing(11);
 
         if (cbStudent.getValue().equals("Subject Enrolled")) {
             HashMap<String, String> enrolledSubjects = UserSession.getInstance().getEnrolledSubjects();
@@ -131,7 +163,7 @@ public class DashboardController implements Initializable {
                 String subjectCode = getSubjectCodeForYearLevel(yearLevel, i);
 
                 if (enrolledSubjects.containsKey(subjectCode)) {
-                    Text currentSubject = new Text("Enrolled Subject - \n" + subjectManager.getSubjectCode(subjectCode));
+                    Text currentSubject = new Text("" + subjectManager.getSubjectCode(subjectCode));
                     vbox.getChildren().add(currentSubject);
                 }
             }
