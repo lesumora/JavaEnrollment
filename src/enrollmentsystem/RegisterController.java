@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,6 +32,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -49,6 +51,8 @@ public class RegisterController implements Initializable {
     final String USERNAME = "root";
     final String PASSWORD = "";
 
+    double x = 0, y = 0;
+    
     @FXML
     private Label label;
     @FXML
@@ -61,6 +65,8 @@ public class RegisterController implements Initializable {
     private ComboBox<String> cbYearLevel, cbCourse;
     @FXML
     private CheckBox cbScholar;
+    @FXML
+    private Button btnExit;
 
     /**
      * Initializes the controller class.
@@ -125,6 +131,16 @@ public class RegisterController implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
                 Scene scene = new Scene(root);
                 registerStage.setScene(scene);
+                registerStage.initStyle(StageStyle.UNDECORATED);
+
+                root.setOnMousePressed(evt -> {
+                    x = evt.getSceneX();
+                    y = evt.getSceneY();
+                });
+                root.setOnMouseDragged(evt -> {
+                    registerStage.setX(evt.getScreenX() - x);
+                    registerStage.setY(evt.getScreenY() - y);
+                });
                 registerStage.show();
             } catch (IOException ex) {
                 Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
@@ -194,11 +210,25 @@ public class RegisterController implements Initializable {
                 Stage registerStage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
                 Scene scene = new Scene(root);
+                registerStage.initStyle(StageStyle.UNDECORATED);
+
+                root.setOnMousePressed(evt -> {
+                    x = evt.getSceneX();
+                    y = evt.getSceneY();
+                });
+                root.setOnMouseDragged(evt -> {
+                    registerStage.setX(evt.getScreenX() - x);
+                    registerStage.setY(evt.getScreenY() - y);
+                });
                 registerStage.setScene(scene);
                 registerStage.show();
             } catch (IOException ex) {
                 Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        
+        if (event.getSource() == btnExit){
+            Platform.exit();
         }
     }
 

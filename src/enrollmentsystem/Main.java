@@ -6,26 +6,35 @@ package enrollmentsystem;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
  * @author hp
  */
 public class Main extends Application {
+    double x = 0, y = 0;
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));       
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        
+        root.setOnMousePressed(evt -> {
+            x = evt.getSceneX();
+            y = evt.getSceneY();
+        });
+        root.setOnMouseDragged(evt ->{
+            stage.setX(evt.getScreenX() - x);
+            stage.setY(evt.getScreenY() - y);
+        });
         stage.show();
     }
     
@@ -45,9 +54,6 @@ public class Main extends Application {
     }
     
     public static void main(String[] args) {
-        
-        
-        
         launch(args);
     }
     

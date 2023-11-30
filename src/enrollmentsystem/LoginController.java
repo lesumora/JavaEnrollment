@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -46,6 +48,7 @@ public class LoginController implements Initializable {
     final String USERNAME = "root";
     final String PASSWORD = "";
 
+    double x = 0, y = 0;
     private int loginAttempts = 0;
 
     @FXML
@@ -56,6 +59,8 @@ public class LoginController implements Initializable {
     private TextField tfUsername;
     @FXML
     private PasswordField pfPassword;
+    @FXML
+    private Button btnExit;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -109,6 +114,16 @@ public class LoginController implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("Register.fxml"));
                 Scene scene = new Scene(root);
                 registerStage.setScene(scene);
+                registerStage.initStyle(StageStyle.UNDECORATED);
+
+                root.setOnMousePressed(evt -> {
+                    x = evt.getSceneX();
+                    y = evt.getSceneY();
+                });
+                root.setOnMouseDragged(evt -> {
+                    registerStage.setX(evt.getScreenX() - x);
+                    registerStage.setY(evt.getScreenY() - y);
+                });
                 registerStage.show();
             } catch (IOException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
@@ -161,6 +176,17 @@ public class LoginController implements Initializable {
                             Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
                             Scene scene = new Scene(root);
                             dashboardStage.setScene(scene);
+                            dashboardStage.initStyle(StageStyle.UNDECORATED);
+
+                            root.setOnMousePressed(evt -> {
+                                x = evt.getSceneX();
+                                y = evt.getSceneY();
+                            });
+                            root.setOnMouseDragged(evt -> {
+                                dashboardStage.setX(evt.getScreenX() - x);
+                                dashboardStage.setY(evt.getScreenY() - y);
+                            });
+
                             dashboardStage.show();
                         } catch (Exception ex) {
                             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
@@ -180,6 +206,10 @@ public class LoginController implements Initializable {
             showMessage("Login Attempts Exceeded", "You have reached the maximum number of login attempts (3)."
                     + "\nUsername and Password field are cleared.");
             loginAttempts = 0;
+        }
+        
+        if (event.getSource() == btnExit){
+            Platform.exit();
         }
     }
 
