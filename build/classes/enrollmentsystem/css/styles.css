@@ -59,7 +59,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: #383838;
 }
 
-#showPane, #advisingPane{
+#showPane, #advisingPane, #confirmationPane{
     -fx-background-color: #B8B8B8;
     -fx-background-radius: 10;
 }

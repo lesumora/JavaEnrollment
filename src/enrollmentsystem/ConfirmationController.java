@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -34,6 +36,7 @@ public class ConfirmationController implements Initializable {
             tSubject9, tSubject10, tSubject11, tSubject12;
 
     private Text[] subjectTexts;
+    double x = 0, y = 0;
 
     HashMap<String, String> bsuCourse = new HashMap<>();
     SubjectManager subjectManager = new SubjectManager();
@@ -47,6 +50,8 @@ public class ConfirmationController implements Initializable {
     private Button btnContinue;
     @FXML
     private Button btnBack;
+    @FXML
+    private Button btnExit;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -54,6 +59,7 @@ public class ConfirmationController implements Initializable {
             tSubject6, tSubject7, tSubject8, tSubject9, tSubject10, tSubject11, tSubject12};
         bsuCourse.put("BSIT", "BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY");
         //bsuCourse.put("BSA", "BACHELOR OF SCIENCE IN ACCOUNTANCY");
+        paneSubject.setSpacing(6);
 
         tCampus.setText(UserSession.getInstance().getUserCampus());
 
@@ -82,7 +88,7 @@ public class ConfirmationController implements Initializable {
                     String subjectCode = "IT10" + i;
 
                     if (enrolledSubjects.containsKey(subjectCode)) {
-                        currentSubject.setText("Enrolled Subject - " + subjectManager.getSubjectCode(subjectCode));
+                        currentSubject.setText("" + subjectManager.getSubjectCode(subjectCode));
                     } else {
                         paneSubject.getChildren().remove(currentSubject);
                     }
@@ -95,7 +101,7 @@ public class ConfirmationController implements Initializable {
                     String subjectCode = "IT20" + i;
 
                     if (enrolledSubjects.containsKey(subjectCode)) {
-                        currentSubject.setText("Enrolled Subject - " + subjectManager.getSubjectCode(subjectCode));
+                        currentSubject.setText("" + subjectManager.getSubjectCode(subjectCode));
                     } else {
                         paneSubject.getChildren().remove(currentSubject);
                     }
@@ -108,7 +114,7 @@ public class ConfirmationController implements Initializable {
                     String subjectCode = "IT3" + (i < 10 ? "0" + i : i);
 
                     if (enrolledSubjects.containsKey(subjectCode)) {
-                        currentSubject.setText("Enrolled Subject - " + subjectManager.getSubjectCode(subjectCode));
+                        currentSubject.setText("" + subjectManager.getSubjectCode(subjectCode));
                     } else {
                         paneSubject.getChildren().remove(currentSubject);
                     }
@@ -121,7 +127,7 @@ public class ConfirmationController implements Initializable {
                     String subjectCode = "IT40" + i;
 
                     if (enrolledSubjects.containsKey(subjectCode)) {
-                        currentSubject.setText("Enrolled Subject - " + subjectManager.getSubjectCode(subjectCode));
+                        currentSubject.setText("" + subjectManager.getSubjectCode(subjectCode));
                     } else {
                         paneSubject.getChildren().remove(currentSubject);
                     }
@@ -146,17 +152,29 @@ public class ConfirmationController implements Initializable {
                 currentStage.close();
 
                 // Open the specified window
-                Stage registerStage = new Stage();
+                Stage stage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
                 Scene scene = new Scene(root);
-                registerStage.setScene(scene);
-                registerStage.show();
+                stage.setScene(scene);
+                stage.initStyle(StageStyle.UNDECORATED);
+
+                root.setOnMousePressed(evt -> {
+                    x = evt.getSceneX();
+                    y = evt.getSceneY();
+                });
+                root.setOnMouseDragged(evt -> {
+                    stage.setX(evt.getScreenX() - x);
+                    stage.setY(evt.getScreenY() - y);
+                });
+                stage.show();
                 UserSession.getInstance().setIsEnrolled(true);
             } catch (IOException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        if (event.getSource() == btnExit){
+            Platform.exit();
+        }
     }
 
 }

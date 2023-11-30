@@ -1,49 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="574.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="enrollmentsystem.ConfirmationController">
-   <children>
-      <Pane layoutX="28.0" layoutY="23.0" prefHeight="169.0" prefWidth="544.0">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="enrollmentsystem.ConfirmationController">
+    <stylesheets>
+        <URL value="@/enrollmentsystem/css/styles.css" />
+    </stylesheets>
+    <children>
+        <Button fx:id="btnContinue" layoutX="522.0" layoutY="547.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="78.0" text="Continue" />
+        <Button fx:id="btnBack" layoutX="425.0" layoutY="547.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="78.0" text="Back" />
+      <Button fx:id="btnExit" layoutX="612.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonAction" text="X" />
+      <Pane fx:id="confirmationPane" layoutX="21.0" layoutY="48.0" prefHeight="490.0" prefWidth="579.0">
          <children>
-            <Label text="Credentials" />
-            <Text layoutX="49.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Academic Year &amp; Term:" wrappingWidth="125.13671803474426" />
-            <Text layoutX="52.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Campus:" textAlignment="RIGHT" wrappingWidth="119.13671815395355" />
-            <Text layoutX="52.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Academic Program:" textAlignment="RIGHT" wrappingWidth="119.13671815395355" />
-            <Text layoutX="52.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Curriculum:" textAlignment="RIGHT" wrappingWidth="119.13671815395355" />
-            <Text layoutX="52.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year Level:" textAlignment="RIGHT" wrappingWidth="119.13671815395355" />
-            <Text layoutX="52.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Section:" textAlignment="RIGHT" wrappingWidth="119.13671815395355" />
-            <Text fx:id="tAcadYear" layoutX="223.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2024 Summer" wrappingWidth="125.13671803474426" />
-            <Text fx:id="tCampus" layoutX="226.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="119.13671815395355" />
-            <Text fx:id="tAcademicProgram" layoutX="223.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="318.13671815395355" />
-            <Text fx:id="tCurriculum" layoutX="226.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="119.13671815395355" />
-            <Text fx:id="tYearLevel" layoutX="226.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="119.13671815395355" />
-            <Text fx:id="tSection" layoutX="226.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="119.13671815395355" />
+              <Pane layoutX="13.0" layoutY="14.0" prefHeight="169.0" prefWidth="544.0">
+                  <children>
+                      <Label text="Credentials">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                      <Text layoutX="49.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Academic Year &amp; Term:" wrappingWidth="125.13671803474426" />
+                      <Text layoutX="52.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Campus:" textAlignment="RIGHT" wrappingWidth="119.13671815395355" />
+                      <Text layoutX="52.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Academic Program:" textAlignment="RIGHT" wrappingWidth="119.13671815395355" />
+                      <Text layoutX="52.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Curriculum:" textAlignment="RIGHT" wrappingWidth="119.13671815395355" />
+                      <Text layoutX="52.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year Level:" textAlignment="RIGHT" wrappingWidth="119.13671815395355" />
+                      <Text layoutX="52.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Section:" textAlignment="RIGHT" wrappingWidth="119.13671815395355" />
+                      <Text fx:id="tAcadYear" layoutX="220.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2024 Summer" wrappingWidth="125.13671803474426" />
+                      <Text fx:id="tCampus" layoutX="220.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="119.13671815395355" />
+                      <Text fx:id="tAcademicProgram" layoutX="220.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="318.13671815395355" />
+                      <Text fx:id="tCurriculum" layoutX="220.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="119.13671815395355" />
+                      <Text fx:id="tYearLevel" layoutX="220.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="119.13671815395355" />
+                      <Text fx:id="tSection" layoutX="220.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="119.13671815395355" />
+                  </children>
+              </Pane>
+              <VBox fx:id="paneSubject" layoutX="13.0" layoutY="218.0" prefHeight="223.0" prefWidth="507.0">
+                  <children>
+                      <Text fx:id="tSubject1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                      <Text fx:id="tSubject2" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                      <Text fx:id="tSubject3" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                      <Text fx:id="tSubject4" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                      <Text fx:id="tSubject5" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                      <Text fx:id="tSubject6" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                      <Text fx:id="tSubject7" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                      <Text fx:id="tSubject8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                      <Text fx:id="tSubject9" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                      <Text fx:id="tSubject10" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                      <Text fx:id="tSubject11" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                      <Text fx:id="tSubject12" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  </children>
+              </VBox>
+              <Label layoutX="13.0" layoutY="197.0" text="Registered Subject/s">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <VBox fx:id="paneSubject" layoutX="45.0" layoutY="240.0" prefHeight="256.0" prefWidth="510.0">
-         <children>
-            <Text fx:id="tSubject1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="tSubject2" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="tSubject3" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="tSubject4" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="tSubject5" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="tSubject6" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="tSubject7" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="tSubject8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="tSubject9" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="tSubject10" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="tSubject11" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="tSubject12" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-         </children>
-      </VBox>
-      <Label layoutX="31.0" layoutY="223.0" text="Registered Subject/s" />
-      <Button fx:id="btnContinue" layoutX="499.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Continue" />
-      <Button fx:id="btnBack" layoutX="419.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Back" />
-   </children>
+    </children>
 </AnchorPane>
